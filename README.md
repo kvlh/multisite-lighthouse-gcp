@@ -4,14 +4,27 @@ Run Lighthouse audits on URLs, and write the results daily into a BigQuery table
 # Steps (needs rewrite)
 
 1. Clone repo.
+    git clone https://github.com/kvlh/multisite-lighthouse-gcp
 2. Install [Google Cloud SDK](https://cloud.google.com/sdk/).
 3. Authenticate with `gcloud auth login`.
 4. Create a new GCP project.
 5. Enable Cloud Functions API and BigQuery API.
 6. Create a new dataset in BigQuery.
 7. Run `gcloud config set project <projectId>` in command line.
-8. Edit `config.json`, update list of `source` URLs and IDs, edit `projectId` to your GCP project ID, edit `datasetId` to the BigQuery dataset ID.
-9. Run `gcloud functions deploy launchLighthouse --trigger-topic launch-lighthouse --memory 2048 --timeout 540 --runtime=nodejs10`.
+    # <projectId> in example config: multisite-lighthouse-gcp 
+8. Edit `config.json`, 
+  update list of `source` URLs and IDs, 
+  edit `projectId` to your GCP project ID, 
+  edit `pubsubTopicId` to the PubSub topic name.
+  edit `datasetId` to the BigQuery dataset ID.
+  edit `bucketName` to the bucket name.
+      #create <bq dataset name> - in example config: lighthouse-bq
+      bq mk <bq dataset name>
+      # <bucket name> in example config: lighthouse-reports
+      gsutil mb -l eu -b on gs://<bucket name>
+      #create pubsub topic <pubsub topic>
+      gcloud pubsub topics create <pubsub topic>
+      gcloud functions deploy launchLighthouse --trigger-topic <pubsub topic> --memory 2048 --timeout 540 --runtime=nodejs16 --region=europe-central2
 10. Run `gcloud pubsub topics publish launch-lighthouse --message all` to audit all URLs in source list.
 11. Run `gcloud pubsub topics publish launch-lighthouse --message <source.id>` to audit just the URL with the given ID.
 12. Verify with Cloud Functions logs and a BigQuery query that the performance data ended up in BQ. Might take some time, especially the first run when the BQ table needs to be created.
@@ -36,6 +49,8 @@ The main problem is with the Performance audit. The lighthouse instances aren't 
 
 This is extremely low-cost. You should basically be able to work with the free tier for a long while, assuming you don't fire the functions dozens of times per day. 
 
-# Todo
+# UPDATE
 
-See [ISSUES](https://github.com/sahava/multisite-lighthouse-gcp/issues).
+Updated version of of Google cloud dependenies and lighthouse
+Flat structure of BQ schema
+

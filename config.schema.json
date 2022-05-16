@@ -16,7 +16,10 @@
             "type": "string"
           }
         },
-        "required": ["id", "url"]
+        "required": [
+          "id",
+          "url"
+        ]
       }
     },
     "projectId": {
@@ -38,7 +41,11 @@
           "type": "array",
           "items": {
             "type": "string",
-            "enum": ["html", "csv", "json"]
+            "enum": [
+              "html",
+              "csv",
+              "json"
+            ]
           }
         }
       }
@@ -50,8 +57,17 @@
           "type": "string"
         }
       },
-      "required": ["bucketName"]
+      "required": [
+        "bucketName"
+      ]
     }
   },
-  "required": ["source", "projectId", "datasetId", "pubsubTopicId", "minTimeBetweenTriggers", "gcs"]
+  "required": [
+    "source",
+    "projectId",
+    "datasetId",
+    "pubsubTopicId",
+    "minTimeBetweenTriggers",
+    "gcs"
+  ]
 }
