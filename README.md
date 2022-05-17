@@ -11,20 +11,20 @@ Run Lighthouse audits on URLs, and write the results daily into a BigQuery table
 5. Enable Cloud Functions API and BigQuery API.
 6. Create a new dataset in BigQuery.
 7. Run `gcloud config set project <projectId>` in command line.
-    # <projectId> in example config: multisite-lighthouse-gcp 
+    <projectId> in example config: multisite-lighthouse-gcp 
 8. Edit `config.json`, 
   update list of `source` URLs and IDs, 
   edit `projectId` to your GCP project ID, 
   edit `pubsubTopicId` to the PubSub topic name.
   edit `datasetId` to the BigQuery dataset ID.
   edit `bucketName` to the bucket name.
-      #create <bq dataset name> - in example config: lighthouse-bq
-      bq mk <bq dataset name>
-      # <bucket name> in example config: lighthouse-reports
-      gsutil mb -l eu -b on gs://<bucket name>
-      #create pubsub topic <pubsub topic>
-      gcloud pubsub topics create <pubsub topic>
-      gcloud functions deploy launchLighthouse --trigger-topic <pubsub topic> --memory 2048 --timeout 540 --runtime=nodejs16 --region=europe-central2
+    create <bq dataset name> - in example config: lighthouse-bq
+    bq mk <bq dataset name>
+    <bucket name> in example config: lighthouse-reports
+    gsutil mb -l eu -b on gs://<bucket name>
+    create pubsub topic <pubsub topic>
+    gcloud pubsub topics create <pubsub topic>
+    gcloud functions deploy launchLighthouse --entry-point launchLighthouse --trigger-topic <pubsub topic> --memory 2048 --timeout 540 --runtime=nodejs16 --region=europe-central2
 10. Run `gcloud pubsub topics publish launch-lighthouse --message all` to audit all URLs in source list.
 11. Run `gcloud pubsub topics publish launch-lighthouse --message <source.id>` to audit just the URL with the given ID.
 12. Verify with Cloud Functions logs and a BigQuery query that the performance data ended up in BQ. Might take some time, especially the first run when the BQ table needs to be created.
