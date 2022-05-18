@@ -22,7 +22,7 @@ Run Lighthouse audits on URLs, and write the results daily into a BigQuery table
     `bq mk <bq dataset name>`
     - <bucket name> in example config: lighthouse-reports 
     `gsutil mb -l eu -b on gs://<bucket name>`
-    - create pubsub topic <pubsub topic> `
+    - create pubsub topic <pubsub topic> 
     `gcloud pubsub topics create <pubsub topic>`
     - deploy cloud function with enrtypoint launchLighthouse
     `gcloud functions deploy launchLighthouse --entry-point launchLighthouse --trigger-topic <pubsub topic> --memory 2048 --timeout 540 --runtime=nodejs16 --region=europe-central2`
