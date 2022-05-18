@@ -18,12 +18,13 @@ Run Lighthouse audits on URLs, and write the results daily into a BigQuery table
   edit `pubsubTopicId` to the PubSub topic name.
   edit `datasetId` to the BigQuery dataset ID.
   edit `bucketName` to the bucket name.
-    create <bq dataset name> - in example config: lighthouse-bq
+    - create <bq dataset name> - in example config: lighthouse-bq
     bq mk <bq dataset name>
-    <bucket name> in example config: lighthouse-reports
+    - <bucket name> in example config: lighthouse-reports
     gsutil mb -l eu -b on gs://<bucket name>
-    create pubsub topic <pubsub topic>
+    - create pubsub topic <pubsub topic>
     gcloud pubsub topics create <pubsub topic>
+    - deploy cloud function with enrtypoint launchLighthouse
     gcloud functions deploy launchLighthouse --entry-point launchLighthouse --trigger-topic <pubsub topic> --memory 2048 --timeout 540 --runtime=nodejs16 --region=europe-central2
 10. Run `gcloud pubsub topics publish launch-lighthouse --message all` to audit all URLs in source list.
 11. Run `gcloud pubsub topics publish launch-lighthouse --message <source.id>` to audit just the URL with the given ID.

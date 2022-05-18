@@ -17,6 +17,11 @@
   },
   "lighthouseFlags": {
     "output": ["html", "csv"],
-    "FormFactor": "desktop"
+    "preset": "desktop",
+    "formFactor": "desktop",
+    "emulatedUserAgent": "constants.userAgents.desktop",
+    "screenEmulation": {
+      "disabled": true
+    }
   }
 }
