@@ -1,10 +1,10 @@
 # multisite-lighthouse-gcp
 Run Lighthouse audits on URLs, and write the results daily into a BigQuery table.
 
-# Steps (needs rewrite)
+# Steps 
 
 1. Clone repo.
-    git clone https://github.com/kvlh/multisite-lighthouse-gcp
+    `git clone https://github.com/kvlh/multisite-lighthouse-gcp`
 2. Install [Google Cloud SDK](https://cloud.google.com/sdk/).
 3. Authenticate with `gcloud auth login`.
 4. Create a new GCP project.
