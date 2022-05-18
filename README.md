@@ -36,7 +36,7 @@ If you need to test mobile
 1. Remove those 3 lines in config
     `"emulatedUserAgent": "constants.userAgents.desktop",
     "screenEmulation": {
-      "disabled": true
+      "disabled": true`
 2. Change those 2 lines from desktop to mobile
    `    "preset": "desktop",
     "formFactor": "desktop",`
