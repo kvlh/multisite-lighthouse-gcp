@@ -199,11 +199,11 @@
     "type": "FLOAT"
   },
   {
-    "name": "performance_max_potential_fid_raw_value",
+    "name": "performance_total_blocking_time_raw_value",
     "type": "FLOAT"
   },
   {
-    "name": "performance_max_potential_fid_score",
+    "name": "performance_total_blocking_time_score",
     "type": "FLOAT"
   },
   {
