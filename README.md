@@ -54,10 +54,6 @@ The BigQuery schema currently only includes items that have a "weight", i.e. tho
 
 You can also send the message `all` to the Pub/Sub topic, in which case the Cloud Function self-executes a new function for every URL in the list, starting the lighthouse processes in parallel.
 
-# Problems
-
-The main problem is with the Performance audit. The lighthouse instances aren't meant for heavy lifting with default settings, so they don't necessarily reflect actual performance costs of the site. Some configuration for network conditions needs to be done in the future.
-
 # Cost
 
 This is extremely low-cost. You should basically be able to work with the free tier for a long while, assuming you don't fire the functions dozens of times per day. 
