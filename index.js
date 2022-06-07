@@ -194,7 +194,6 @@ async function sendAllPubsubMsgs(ids) {
     log(`${id}: Sending init PubSub message`);
     await pubsub
       .topic(config.pubsubTopicId)
-      .publisher()
       .publish(msg);
     log(`${id}: Init PubSub message sent`)
   }));
