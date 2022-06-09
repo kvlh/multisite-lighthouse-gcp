@@ -10,10 +10,10 @@
   ],
   "projectId": "multisite-lighthouse-gcp",
   "pubsubTopicId": "launch-lighthouse",
-  "datasetId": "lighthouse-bq",
+  "datasetId": "lighthouse_bq",
   "minTimeBetweenTriggers": 300000,
   "gcs": {
-    "bucketName": "lighthouse-reports"
+    "bucketName": "lighthouse_reports"
   },
   "lighthouseFlags": {
     "output": ["html", "csv"],
