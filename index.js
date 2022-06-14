@@ -99,8 +99,8 @@ async function launchBrowserWithLighthouse(id, url) {
 function createJSON(obj, id) {
   return {
     fetch_time: obj.fetchTime,
-    site_url: obj.finalUrl,
-    site_id: id,
+    url: obj.finalUrl,
+    url_id: id,
     user_agent: obj.userAgent,
     emulated_as: obj.configSettings.formFactor,
     accessibility_total_score: obj.categories.accessibility.score,
